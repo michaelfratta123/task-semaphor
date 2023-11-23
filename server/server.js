@@ -1,7 +1,6 @@
 // server.js
 const express = require("express");
 const cors = require("cors");
-const helmet = require("helmet");
 const dotenv = require("dotenv");
 const connectDB = require("./db/conn");
 const usersRoutes = require("./routes/users");
@@ -15,7 +14,6 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use(helmet());
 
 // Define an asynchronous function to start the server after connecting to MongoDB
 const startServer = async () => {
