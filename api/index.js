@@ -6,14 +6,24 @@ const connectDB = require("./db/conn");
 const usersRoutes = require("./routes/users");
 const tasksRoutes = require("./routes/tasks");
 const authRoutes = require("./routes/auth");
+const allowCors = require("allowCors"); // Update the path
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
+
+// Use allowCors middleware for all routes
+app.use(allowCors);
 
 // Define an asynchronous function to start the server after connecting to MongoDB
 const startServer = async () => {
