@@ -6,7 +6,7 @@ const connectDB = require("./db/conn");
 const usersRoutes = require("./routes/users");
 const tasksRoutes = require("./routes/tasks");
 const authRoutes = require("./routes/auth");
-const allowCors = require("allowCors"); // Update the path
+const allowCors = require("./allowCors");
 
 dotenv.config();
 
