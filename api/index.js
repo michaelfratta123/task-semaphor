@@ -11,7 +11,13 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 let server;
@@ -40,10 +46,7 @@ const startServer = async () => {
   }
 };
 
-// If this is the main entry point of your application, you might want to conditionally start the server
-if (require.main === module) {
-  startServer();
-}
+startServer();
 
 // Export both app and startServer function
 module.exports = { app, startServer };
