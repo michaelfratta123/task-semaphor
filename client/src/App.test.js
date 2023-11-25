@@ -1,8 +1,27 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import { BrowserRouter as Router } from "react-router-dom";
+import App from "./App";
+import LoginRegister from "./components/LoginRegister";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("App component renders without crashing", () => {
+  const { asFragment } = render(
+    <Router>
+      <App />
+    </Router>
+  );
+
+  expect(asFragment()).toMatchSnapshot();
+});
+
+test("LoginRegister component is present when there is no userData", () => {
+  // Render the LoginRegister component without providing userData
+  render(<LoginRegister handleLogin={() => {}} handleRegister={() => {}} />);
+
+  // Check if the LoginRegister component is rendered by querying its data-testid
+  const loginRegisterCard = screen.queryByTestId("login-register-card");
+
+  // Assert that the LoginRegister component is present
+  expect(loginRegisterCard).toBeInTheDocument();
 });

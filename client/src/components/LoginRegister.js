@@ -34,6 +34,7 @@ const LoginRegister = ({ handleLogin, handleRegister }) => {
         className="m-auto text-light mt-5"
         bg="dark"
         border="light"
+        data-testid="login-register-card"
       >
         <Card.Body>
           <Card.Title className="mb-4 mt-2">Login or Register</Card.Title>

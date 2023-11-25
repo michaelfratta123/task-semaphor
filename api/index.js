@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -21,23 +20,36 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Define an asynchronous function to start the server after connecting to MongoDB
+let server;
+
 const startServer = async () => {
   try {
     await connectDB.connectToServer();
 
-    // Use your routes
     app.use("/api/users", usersRoutes);
     app.use("/api/tasks", tasksRoutes);
     app.use("/api/auth", authRoutes);
 
-    app.listen(port, () => {
+    server = app.listen(port, () => {
       console.log(`Server is running on port: ${port}`);
     });
+
+    console.log("Successfully connected to MongoDB.");
+
+    // Return a function to gracefully shut down the server
+    return () => {
+      console.log("Closing server...");
+      server.close();
+    };
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
   }
 };
 
-// Call the asynchronous function to start the server
-startServer();
+// If this is the main entry point of your application, you might want to conditionally start the server
+if (require.main === module) {
+  startServer();
+}
+
+// Export both app and startServer function
+module.exports = { app, startServer };
