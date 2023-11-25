@@ -103,7 +103,7 @@ const Admin = () => {
         </Spinner>
       ) : (
         <Table striped bordered hover variant="dark">
-          <thead className="align-middle fs-5">
+          <thead className="tableHead align-middle fs-5">
             <tr>
               <th className="p-3">Username</th>
               <th>Admin User</th>

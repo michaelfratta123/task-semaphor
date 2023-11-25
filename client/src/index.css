@@ -46,9 +46,10 @@ body {
     1px 1px 0 #fff;
 }
 
-/* set custom font to task list and task title too */
+/* set custom font to task list, task title and table head too */
 .taskList,
-.taskTitle {
+.taskTitle,
+.tableHead {
   font-family: "ethnocentric", "Roboto", "sans-serif";
 }
 
