@@ -1,13 +1,69 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: gray !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.App {
+  text-align: center;
+}
+
+@font-face {
+  font-family: "ethnocentric";
+  src: local("ethnocentric"), url("./fonts/ethnocentric.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2)
+    format("woff2");
+}
+
+/* Apply Roboto font to all text except the 'App' class */
+body :global(*) {
+  font-family: "Roboto", sans-serif;
+}
+
+/* custom font will not load if babel.config.js is present */
+.AppTitle {
+  font-family: "ethnocentric", "Roboto";
+  color: grey;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.addATask,
+.usersHeader {
+  font-family: "ethnocentric", "Roboto";
+  color: black;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.taskList,
+.taskTitle {
+  font-family: "ethnocentric", "Roboto";
+}
+
+img {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 2%;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  margin-right: 10%;
+  margin-left: 10%;
 }

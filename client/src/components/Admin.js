@@ -1,11 +1,14 @@
 // create a page for the admin tab
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
 // define an Admin component
-const Admin = (userData) => {
+const Admin = () => {
   // set an empty array of users to state
   const [users, setUsers] = useState([]);
+  // add loading state for spinner
+  const [loading, setLoading] = useState(true);
 
   const PREFIX = process.env.REACT_APP_API_URL;
 
@@ -27,11 +30,15 @@ const Admin = (userData) => {
       }
     } catch (error) {
       console.error("Error fetching users:", error);
+    } finally {
+      // set loading to false once the data is fetched - success or failure
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchUsers();
+    // eslint-disable-next-line
   }, []);
 
   // define a function to allow an admin to grant/revoke admin status to other users
@@ -62,40 +69,83 @@ const Admin = (userData) => {
     }
   };
 
+  // define a function to delete a user
+  const handleDeleteUser = async (userId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${PREFIX}/api/users/${userId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Remove the deleted user from the local state
+        setUsers((prevUsers) =>
+          prevUsers.filter((user) => user._id !== userId)
+        );
+      } else {
+        console.error("Error deleting user:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+
   // render the component
   return (
     <div className="m-3">
-      <h2 className="mb-3">Users:</h2>
-      <Table striped bordered hover variant="dark">
-        <thead className="fs-5">
-          <tr>
-            <th>Username</th>
-            <th>is Admin?</th>
-            <th>Make Admin?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* render all users in a table, and display their current admin
+      <h2 className="usersHeader mb-3 p-2">Users:</h2>
+      {loading ? ( // Display Spinner while loading
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      ) : (
+        <Table striped bordered hover variant="dark">
+          <thead className="align-middle fs-5">
+            <tr>
+              <th className="p-3">Username</th>
+              <th>Admin User</th>
+              <th>Admin Status</th>
+              <th>Delete User</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* render all users in a table, and display their current admin
                 status, as well as a Revoke/Allow button depending on the
                 action that can be performed */}
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.username}</td>
-              <td>{user.isAdmin ? "Yes" : "No"}</td>
-              <td>
-                <Button
-                  variant={user.isAdmin ? "danger" : "success"}
-                  onClick={() =>
-                    handleAdminStatusChange(user._id, !user.isAdmin)
-                  }
-                >
-                  {user.isAdmin ? "Revoke" : "Allow"}
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td className="align-middle fs-5">{user.username}</td>
+                <td className="align-middle fs-5">
+                  {user.isAdmin ? "Yes" : "No"}
+                </td>
+                <td className="align-middle p-3">
+                  <Button
+                    variant={user.isAdmin ? "danger" : "success"}
+                    className="fs-5"
+                    onClick={() =>
+                      handleAdminStatusChange(user._id, !user.isAdmin)
+                    }
+                  >
+                    {user.isAdmin ? "Deny" : "Allow"}
+                  </Button>
+                </td>
+                <td className="align-middle p-3">
+                  <Button
+                    variant="danger"
+                    className="fs-5"
+                    onClick={() => handleDeleteUser(user._id)}
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
     </div>
   );
 };

@@ -12,6 +12,9 @@ router.get("/:userId", checkJWTToken, UserController.getSpecificUser);
 // UPDATE A SPECIFIC USER'S ADMIN STATUS
 router.put("/:userId", checkJWTToken, UserController.updateUserAdminStatus);
 
+// DELETE USER
+router.delete("/:userId", checkJWTToken, UserController.deleteUser);
+
 // LOGIN ENDPOINT
 router.post("/login", UserController.login);
 

@@ -31,7 +31,7 @@ const LoginRegister = ({ handleLogin, handleRegister }) => {
     <div>
       <Card
         style={{ width: "20rem" }}
-        className="m-auto text-light"
+        className="m-auto text-light mt-5"
         bg="dark"
         border="light"
       >

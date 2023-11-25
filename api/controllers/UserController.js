@@ -55,6 +55,24 @@ const UserController = {
     }
   },
 
+  deleteUser: async (req, res) => {
+    try {
+      const userId = req.params.userId;
+
+      // Find and remove the user by ID
+      const deletedUser = await User.findByIdAndDelete(userId);
+
+      if (deletedUser) {
+        res.json({ msg: "User deleted successfully", deletedUser });
+      } else {
+        res.status(404).json({ msg: "User not found" });
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      res.status(500).json({ msg: "Internal server error" });
+    }
+  },
+
   login: async (req, res) => {
     // set username and password from request body
     const { username, password } = req.body;

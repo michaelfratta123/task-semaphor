@@ -17,13 +17,19 @@ const TaskList = ({
   // define a function to handle task filtering
   const filterTasks = (tasks, filter, userId, isAdmin) => {
     if (tasks) {
+      let updatedTasks;
       switch (filter) {
         case "otherTasks":
-          return isAdmin ? tasks : tasks; // Return all tasks for admin
+          updatedTasks = isAdmin ? tasks : tasks; // Return all tasks for admin
+          break;
         // otherwise just show the user's tasks
         default:
-          return tasks.filter((task) => task.creator === userId);
+          updatedTasks = tasks.filter((task) => task.creator === userId);
       }
+      // Sort tasks by username
+      return updatedTasks
+        .slice()
+        .sort((a, b) => a.username.localeCompare(b.username));
     }
   };
 
@@ -38,7 +44,7 @@ const TaskList = ({
   // render the component
   return (
     <div className="d-flex justify-content-center flex-wrap">
-      {/* render all the tasks if there are any */}
+      {/* spin till props received */}
       {filteredTasks && filteredTasks.length > 0 ? (
         filteredTasks.map((task) => (
           <Task

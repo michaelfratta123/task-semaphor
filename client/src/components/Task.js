@@ -96,19 +96,27 @@ const Task = ({ task, handleEditTask, handleRemoveTask, userData }) => {
         ) : (
           // render the card alone if not editing
           <div>
-            <Card.Title className="mb-3">{task.title}</Card.Title>
+            <Card.Title className="taskTitle mb-3">{task.title}</Card.Title>
             <hr />
             {/* show the username attribute on task card only to admin user */}
-            {userData.isAdmin && userData.username !== task.username && (
-              <Card.Text style={{ whiteSpace: "pre-line" }}>
+            {userData.isAdmin && task.creator !== userData.userId && (
+              <Card.Text
+                style={{
+                  whiteSpace: "pre-line",
+                  color: "gray",
+                  fontWeight: "bold",
+                }}
+              >
                 Created by:{"\n"}
                 {task.username}
               </Card.Text>
             )}
+
             <Card.Text style={{ whiteSpace: "pre-line" }}>
               Task description:{"\n"}
               {task.description}
             </Card.Text>
+            <hr />
             <Card.Text style={{ whiteSpace: "pre-line" }}>
               Due by:{"\n"}
               {task.deadline}

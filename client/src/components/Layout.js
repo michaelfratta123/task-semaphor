@@ -4,7 +4,7 @@ import Header from "./Header";
 const Layout = ({ children, userData, handleLogout }) => {
   // Render the component
   return (
-    <div>
+    <div className="App">
       <Header userData={userData} handleLogout={handleLogout} />
       {children}
     </div>

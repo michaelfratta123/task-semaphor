@@ -1,7 +1,6 @@
-import "./App.css";
 // define the main functionality of the frontend
 import React, { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import LoginRegister from "./components/LoginRegister";
 import TaskForm from "./components/TaskForm";
@@ -9,7 +8,6 @@ import Filter from "./components/Filter";
 import TaskList from "./components/TaskList";
 import { jwtDecode } from "jwt-decode";
 import Admin from "./components/Admin";
-import { useNavigate } from "react-router-dom";
 
 function App() {
   // track user data; initiate to null
@@ -71,6 +69,7 @@ function App() {
       setUserData(JSON.parse(storedUserData));
       fetchTasks();
     }
+    // eslint-disable-next-line
   }, [userId, userData?.isAdmin, filter]);
 
   // ============
@@ -308,7 +307,7 @@ function App() {
               {userData ? (
                 <>
                   <TaskForm handleAddTask={handleAddTask} />
-                  <h3 className="bg-dark text-light m-auto p-2 w-75 mb-3 mt-5">
+                  <h3 className="taskList bg-dark text-light m-auto p-3 w-75 mb-3 mt-5">
                     Task List:
                   </h3>
                   {userData.isAdmin && (

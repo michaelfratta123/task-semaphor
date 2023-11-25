@@ -1,42 +1,59 @@
 // Header.js
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Navbar, Container, Nav } from "react-bootstrap";
 
 const Header = ({ userData, handleLogout }) => {
+  // define a link style
   const linkStyle = {
-    marginRight: 15,
-    color: "white",
+    color: "black",
     textDecoration: "none",
-    fontSize: "large",
+    fontFamily: ["ethnocentric", "Roboto"],
+    margin: "2%",
+    alignSelf: "center",
+  };
+
+  const navigate = useNavigate();
+
+  // handle the home click
+  const handleHomeClick = () => {
+    // force navigate to the home page
+    navigate("/");
   };
 
   return (
-    <div
-      className="m-3 bg-dark text-light p-3"
-      style={{ display: "flex", alignItems: "center" }}
-    >
-      {userData && userData.isAdmin && (
-        <Link to="/admin" style={linkStyle}>
-          Admin
-        </Link>
-      )}
-      {userData && (
-        <>
-          <Link to="/" style={linkStyle}>
-            Home
-          </Link>
-          <Button
-            variant="secondary"
-            onClick={handleLogout}
-            style={{ fontSize: "large" }}
-          >
-            Logout
-          </Button>
-        </>
-      )}
-      <h1 className="AppTitle fs-1 mx-5">TaskSemaphor</h1>
-    </div>
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand className="AppTitle fs-1">TaskSemaphor</Navbar.Brand>
+        <Nav>
+          {userData && userData.isAdmin && (
+            <Link to="/admin" style={linkStyle} className="fs-5">
+              Admin
+            </Link>
+          )}
+          {userData && (
+            <>
+              <Link
+                to="/"
+                style={linkStyle}
+                onClick={handleHomeClick}
+                className="fs-5"
+              >
+                Home
+              </Link>
+              <Button
+                variant="outline-dark"
+                onClick={handleLogout}
+                style={linkStyle}
+                className="fs-5"
+              >
+                Logout
+              </Button>
+            </>
+          )}
+        </Nav>
+      </Container>
+    </Navbar>
   );
 };
 
