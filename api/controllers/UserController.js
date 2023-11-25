@@ -1,7 +1,10 @@
+// CREATE A USER CONTROLLER FOR ALL USER ENDPOINTS
+// import jwt & User model
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const UserController = {
+  // GET ALL USERS
   getAllUsers: async (req, res) => {
     try {
       const users = await User.find({}, { password: 0 });
@@ -12,6 +15,7 @@ const UserController = {
     }
   },
 
+  // GET A SPECIFIC USER (by id)
   getSpecificUser: async (req, res) => {
     try {
       const userId = req.params.userId;
@@ -28,6 +32,7 @@ const UserController = {
     }
   },
 
+  // UPDATE ADMIN USER STATUS
   updateUserAdminStatus: async (req, res) => {
     try {
       const userId = req.params.userId;
@@ -55,6 +60,7 @@ const UserController = {
     }
   },
 
+  // DELETE A USER
   deleteUser: async (req, res) => {
     try {
       const userId = req.params.userId;
@@ -73,6 +79,7 @@ const UserController = {
     }
   },
 
+  // LOGIN
   login: async (req, res) => {
     // set username and password from request body
     const { username, password } = req.body;
@@ -99,6 +106,7 @@ const UserController = {
     }
   },
 
+  // REGISTER
   register: async (req, res) => {
     try {
       const { username, password } = req.body;

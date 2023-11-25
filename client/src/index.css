@@ -1,9 +1,11 @@
+/* import custom font for app title */
 @font-face {
   font-family: "ethnocentric";
   src: local("ethnocentric"), url("./fonts/ethnocentric.otf") format("opentype");
   font-display: swap;
 }
 
+/* import custom font for app body */
 @font-face {
   font-family: "Roboto";
   font-style: normal;
@@ -13,12 +15,16 @@
     format("woff2");
 }
 
+/* override inherited margins,
+   apply a gray background to the whole body,
+   apply the Roboto font to the whole body */
 body {
   margin: 0;
   background-color: gray !important;
   font-family: "Roboto", sans-serif !important;
 }
 
+/* align everything in the App (body) to the center */
 .App {
   text-align: center;
 }
@@ -31,19 +37,22 @@ body {
     1px 1px 0 #fff;
 }
 
+/* set custom font to sub header and TaskForm title too */
 .addATask,
 .usersHeader {
-  font-family: "ethnocentric", "Roboto";
+  font-family: "ethnocentric", "Roboto", "sans-serif";
   color: black;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
     1px 1px 0 #fff;
 }
 
+/* set custom font to task list and task title too */
 .taskList,
 .taskTitle {
-  font-family: "ethnocentric", "Roboto";
+  font-family: "ethnocentric", "Roboto", "sans-serif";
 }
 
+/* center p elems and apply margins */
 p {
   display: flex;
   justify-content: center;

@@ -1,4 +1,4 @@
-// routes/tasks.js
+// CREATE ROUTES FOR TASK PURPOSES
 const express = require("express");
 const router = express.Router();
 const checkJWTToken = require("../middleware/checkJWTToken");

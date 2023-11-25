@@ -1,4 +1,4 @@
-// Define a layout component
+// Define a layout component for easier style application and props management
 import Header from "./Header";
 
 const Layout = ({ children, userData, handleLogout }) => {

@@ -113,8 +113,9 @@ const Admin = () => {
           </thead>
           <tbody>
             {/* render all users in a table, and display their current admin
-                status, as well as a Revoke/Allow button depending on the
-                action that can be performed */}
+                status, as well as a Deny/Allow button depending on the
+                action that can be performed, and a Delete button to delete
+                the user */}
             {users.map((user) => (
               <tr key={user._id}>
                 <td className="align-middle fs-5">{user.username}</td>

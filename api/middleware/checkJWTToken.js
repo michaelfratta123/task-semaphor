@@ -1,4 +1,4 @@
-// middleware/checkJWTToken.js
+// CREATE MIDDLEWARE TO CHECK JWT VALIDITY
 const jwt = require("jsonwebtoken");
 
 const checkJWTToken = (req, res, next) => {

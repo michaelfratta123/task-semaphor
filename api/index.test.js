@@ -1,3 +1,4 @@
+// CREATE A SNAPSHOT TEST AND SOME UNIT TESTS
 const request = require("supertest");
 const { app, startServer } = require("./index");
 

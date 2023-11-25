@@ -300,16 +300,20 @@ function App() {
   return (
     <Layout userData={userData} handleLogout={handleLogout}>
       <Routes>
+        {/* define a route for the home path, and associate with it
+            the components below */}
         <Route
           path="/"
           element={
             <>
+              {/* render the TaskForm and TaskList components if the user is logged in */}
               {userData ? (
                 <>
                   <TaskForm handleAddTask={handleAddTask} />
                   <h3 className="taskList bg-dark text-light m-auto p-3 w-75 mb-3 mt-5">
                     Task List:
                   </h3>
+                  {/* render the Filter component if the user is an admin */}
                   {userData.isAdmin && (
                     <Filter setFilter={setFilter} fetchTasks={fetchTasks} />
                   )}
@@ -324,6 +328,7 @@ function App() {
                   />
                 </>
               ) : (
+                // otherwise show the LoginRegister component
                 <LoginRegister
                   handleLogin={handleLogin}
                   handleRegister={handleRegister}
@@ -332,7 +337,8 @@ function App() {
             </>
           }
         />
-        <Route path="/admin" element={<Admin userData={userData} />} />
+        {/* define a route for the admin path, used by the Admin component */}
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Layout>
   );

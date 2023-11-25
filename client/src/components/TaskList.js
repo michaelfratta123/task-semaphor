@@ -44,7 +44,7 @@ const TaskList = ({
   // render the component
   return (
     <div className="d-flex justify-content-center flex-wrap">
-      {/* spin till props received */}
+      {/* if there are tasks, render them */}
       {filteredTasks && filteredTasks.length > 0 ? (
         filteredTasks.map((task) => (
           <Task

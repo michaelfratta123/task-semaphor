@@ -1,3 +1,4 @@
+// CREATE ROUTES FOR USER PURPOSES (MINUS LOGIN/REGISTER)
 const express = require("express");
 const router = express.Router();
 const checkJWTToken = require("../middleware/checkJWTToken");

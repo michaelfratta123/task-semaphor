@@ -35,7 +35,7 @@ const Task = ({ task, handleEditTask, handleRemoveTask, userData }) => {
       border="light"
     >
       <Card.Body>
-        {/* allow in-place editing of a given task card */}
+        {/* allow in-place editing of a given task - via form */}
         {isEditing ? (
           <div>
             <Form.Group className="mb-3">
@@ -94,7 +94,7 @@ const Task = ({ task, handleEditTask, handleRemoveTask, userData }) => {
             </Button>
           </div>
         ) : (
-          // render the card alone if not editing
+          // render as a card if not editing
           <div>
             <Card.Title className="taskTitle mb-3">{task.title}</Card.Title>
             <hr />
@@ -114,6 +114,7 @@ const Task = ({ task, handleEditTask, handleRemoveTask, userData }) => {
 
             <Card.Text className="fs-5">{task.description}</Card.Text>
             <hr />
+            {/* only render deadline if present */}
             {task.deadline && (
               <Card.Text className="fw-bold">Due by {task.deadline}</Card.Text>
             )}

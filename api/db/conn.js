@@ -1,4 +1,4 @@
-// conn.js
+// CONNECT TO THE DATABASE
 const mongoose = require("mongoose");
 
 let _db;

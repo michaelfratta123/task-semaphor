@@ -1,4 +1,4 @@
-// Header.js
+// CREATE A HEADER COMPONENT
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
@@ -26,11 +26,13 @@ const Header = ({ userData, handleLogout }) => {
       <Container>
         <Navbar.Brand className="AppTitle fs-1">TaskSemaphor</Navbar.Brand>
         <Nav>
+          {/* show admin link only if the (logged in) user is an admin */}
           {userData && userData.isAdmin && (
             <Link to="/admin" style={linkStyle} className="fs-5">
               Admin
             </Link>
           )}
+          {/* show the home link and logout button is a user is logged in */}
           {userData && (
             <>
               <Link

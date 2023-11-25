@@ -1,3 +1,4 @@
+// BACKEND ENTRY POINT
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -11,6 +12,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+// enable cors options from all origins and methods
 const corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -34,9 +36,8 @@ const startServer = async () => {
       console.log(`Server is running on port: ${port}`);
     });
 
-    console.log("Successfully connected to MongoDB.");
-
     // Return a function to gracefully shut down the server
+    // this was required for testing to work
     return () => {
       console.log("Closing server...");
       server.close();

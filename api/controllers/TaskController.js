@@ -1,7 +1,9 @@
-// controllers/TaskController.js
+// CREATE A TASK CONTROLLER FOR ALL TASKS ENDPOINTS
+// import Task model
 const Task = require("../models/Task");
 
 const TaskController = {
+  // GET TASKS
   getTasks: async (req, res) => {
     try {
       const { userId, isAdmin } = req.user;
@@ -16,7 +18,7 @@ const TaskController = {
         // If the filter is 'myTasks', fetch tasks created by the user
         tasks = await Task.find({ creator: userId });
       } else {
-        // If the filter is neither 'myTasks' nor 'otherTasks', return an empty array or handle as needed
+        // If the filter is neither 'myTasks' nor 'otherTasks', return an empty array
         tasks = [];
       }
 
@@ -27,6 +29,7 @@ const TaskController = {
     }
   },
 
+  // ADD A TASK
   addTask: async (req, res) => {
     try {
       const { title, deadline, description } = req.body;
@@ -48,6 +51,7 @@ const TaskController = {
     }
   },
 
+  // UPDATE A TASK
   updateTask: async (req, res) => {
     try {
       const taskId = req.params.id;
@@ -74,6 +78,7 @@ const TaskController = {
     }
   },
 
+  // DELETE A TASK
   deleteTask: async (req, res) => {
     try {
       const taskId = req.params.id;
