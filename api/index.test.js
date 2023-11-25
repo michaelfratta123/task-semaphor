@@ -22,27 +22,6 @@ describe("Server Snapshot Test", () => {
   });
 });
 
-// LOGIN UNIT TEST
-describe("POST /api/auth/login", () => {
-  test("should log in an existing user and return a token", async () => {
-    const response = await request(app)
-      .post("/api/auth/login")
-      .send({ username: "testuser", password: "testpassword" });
-
-    expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty("token");
-  });
-
-  test("should return 401 for incorrect password", async () => {
-    const response = await request(app)
-      .post("/api/auth/login")
-      .send({ username: "testuser", password: "incorrectpassword" });
-
-    expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("msg", "Incorrect password");
-  });
-});
-
 // REGISTER UNIT TEST
 describe("POST /api/auth/register", () => {
   test("should register a new user and return a token", async () => {
@@ -68,6 +47,27 @@ describe("POST /api/auth/register", () => {
       .send({ username: "testuser", password: "testpassword" });
 
     expect(response.status).toBe(400);
+  });
+});
+
+// LOGIN UNIT TEST
+describe("POST /api/auth/login", () => {
+  test("should log in an existing user and return a token", async () => {
+    const response = await request(app)
+      .post("/api/auth/login")
+      .send({ username: "testuser", password: "testpassword" });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("token");
+  });
+
+  test("should return 401 for incorrect password", async () => {
+    const response = await request(app)
+      .post("/api/auth/login")
+      .send({ username: "testuser", password: "incorrectpassword" });
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty("msg", "Incorrect password");
   });
 });
 

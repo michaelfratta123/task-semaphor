@@ -16,7 +16,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run install-all\" \"npm run client\" \"npm run server\"",
+    "install-all": "npm install && cd ..\\api && npm install && cd ../client",
+    "client": "react-scripts start",
+    "server": "cd ..\\api && node index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "concurrently": "^8.2.2"
   }
 }

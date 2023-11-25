@@ -112,15 +112,11 @@ const Task = ({ task, handleEditTask, handleRemoveTask, userData }) => {
               </Card.Text>
             )}
 
-            <Card.Text style={{ whiteSpace: "pre-line" }}>
-              Task description:{"\n"}
-              {task.description}
-            </Card.Text>
+            <Card.Text className="fs-5">{task.description}</Card.Text>
             <hr />
-            <Card.Text style={{ whiteSpace: "pre-line" }}>
-              Due by:{"\n"}
-              {task.deadline}
-            </Card.Text>
+            {task.deadline && (
+              <Card.Text className="fw-bold">Due by {task.deadline}</Card.Text>
+            )}
             <Button
               variant="secondary"
               className="m-1"
