@@ -12,6 +12,8 @@ Login if you already have an account, else register.
 
 Logout when finished (top right of header).
 
+TO LOGIN AS AN ADMIN USER login as username: admin@example.com, password: admin.
+
 **HOW TO INSTALL THE APP (via terminal)**
 
 To install the app – clone the repo from github, open in an IDE, navigate to the client directory, and type ‘npm start’ – this will install all packages/dependencies, and open the app automatically in the browser of your choice. You will also either have to replace the MONDODB_URI and JWT_SECRET environment variables with your chosen values, or create a new .env file in the root of the ‘api’ directory, and add them there. The same will have to be done for the ‘client’ directory – REACT_APP_API_URL will need to be replaced with the localhost address of your choice; either directly, or via .env file in the root of the ‘client’ directory.
